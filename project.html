@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع الكركديه ككاشف pH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f3f4f6; /* لون خلفية محايد عشان تبرز الكرتونة */
+            padding: 2rem;
+        }
+        .cardboard {
+            background-color: #ffffff;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        /* تأثير ورق خفيف كخلفية للكرتونة */
+        .cardboard::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.05"/></svg>');
+            pointer-events: none;
+            z-index: 0;
+        }
+        .content-z {
+            position: relative;
+            z-index: 1;
+        }
+        /* ألوان مقياس الـ pH بناءً على الصورة المرفقة */
+        .ph-1 { background-color: #ff0000; }
+        .ph-2 { background-color: #ff3333; }
+        .ph-3 { background-color: #e56b6b; }
+        .ph-4 { background-color: #ff66b2; }
+        .ph-5 { background-color: #ff99cc; }
+        .ph-6 { background-color: #ffcce5; }
+        .ph-7 { background-color: #cbb3d8; }
+        .ph-8 { background-color: #9baab3; }
+        .ph-9 { background-color: #559b9b; }
+        .ph-10 { background-color: #6da246; }
+        .ph-11 { background-color: #9abf59; }
+        .ph-12 { background-color: #bac82f; }
+        .ph-13 { background-color: #fcd536; }
+        .ph-14 { background-color: #d2a912; }
+
+        .ph-cell {
+            display: flex;
+            flex-direction: column;
+            border: 2px solid #1f2937;
+            border-right: none;
+        }
+        .ph-cell:first-child { border-right: 2px solid #1f2937; }
+        
+        .ph-number {
+            text-align: center;
+            font-weight: 700;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid #1f2937;
+            background-color: white;
+            font-size: 1.25rem;
+        }
+        
+        .ph-color {
+            height: 60px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cardboard content-z">
+        <!-- عنوان المشروع -->
+        <div class="text-center mb-12 border-b-4 border-rose-600 pb-6">
+            <h1 class="text-5xl font-black text-gray-800 mb-3 tracking-wide">الكركديه: كاشف <span class="text-rose-600">pH</span> طبيعي</h1>
+            <p class="text-xl text-gray-600 font-semibold">هل نحتاج فعلاً للمواد الكيميائية المعقدة لنفهم طبيعة المواد من حولنا؟</p>
+        </div>
+
+        <!-- القسم العلوي: العملي والنظري -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+            
+            <!-- القسم العملي (يمين) -->
+            <div class="bg-rose-50 p-8 rounded-2xl border-2 border-rose-100 shadow-sm">
+                <div class="flex items-center mb-6">
+                    <div class="bg-rose-600 text-white w-12 h-12 flex items-center justify-center rounded-full text-2xl font-bold ml-4">١</div>
+                    <h2 class="text-3xl font-bold text-gray-800">الجانب العملي: كيف نستعمله؟</h2>
+                </div>
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                    الفكرة بسيطة جداً وبعيدة عن تعقيدات المخابر. نحن بنستخلص المادة الفعالة من أزهار الكركديه المجففة لنعمل منها كاشفنا الخاص.
+                </p>
+                <ul class="list-none space-y-4 mt-6">
+                    <li class="flex items-start">
+                        <span class="text-rose-500 text-2xl ml-3">▪</span>
+                        <p class="text-lg text-gray-800 font-semibold">التحضير: <span class="text-gray-600 font-normal">نغلي أوراق الكركديه بالماء أو ننقعها، ثم نصفي السائل. هذا السائل الأرجواني الغامق هو الكاشف تبعنا.</span></p>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-rose-500 text-2xl ml-3">▪</span>
+                        <p class="text-lg text-gray-800 font-semibold">التجربة: <span class="text-gray-600 font-normal">نضيف بضع قطرات من كاشف الكركديه إلى المحاليل اللي بدنا نختبرها (ليمون، ماء، سائل جلي...).</span></p>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-rose-500 text-2xl ml-3">▪</span>
+                        <p class="text-lg text-gray-800 font-semibold">النتيجة: <span class="text-gray-600 font-normal">رح نلاحظ تغير فوري بلون المحلول بناءً على درجة حموضته وقلوية المادة، متل ما موضح بالجدول تحت.</span></p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- القسم النظري (يسار) -->
+            <div class="bg-blue-50 p-8 rounded-2xl border-2 border-blue-100 shadow-sm">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-600 text-white w-12 h-12 flex items-center justify-center rounded-full text-2xl font-bold ml-4">٢</div>
+                    <h2 class="text-3xl font-bold text-gray-800">الجانب النظري: علمياً شو عم يصير؟</h2>
+                </div>
+                <p class="text-lg text-gray-700 leading-relaxed mb-4">
+                    السر كله مخبى بصبغة طبيعية موجودة بالكركديه اسمها <strong class="text-blue-700">"الأنثوسيانين" (Anthocyanin)</strong>. هيدي الصبغة ذكية جداً وبتتفاعل مع أيونات الهيدروجين ($H^+$) الموجودة بالمحلول.
+                </p>
+                
+                <div class="space-y-5 mt-6">
+                    <div class="bg-white p-4 rounded-xl border border-rose-200 shadow-sm">
+                        <h3 class="text-xl font-bold text-rose-600 mb-2">الوسط الحمضي (pH 1 ➔ 6)</h3>
+                        <p class="text-gray-700">تزداد كمية أيونات الهيدروجين ($H^+$)، مما يحافظ على استقرار الجزيء الكيميائي للصبغة، فيظهر باللون <strong class="text-rose-600">الأحمر أو الزهري</strong> (مثل الليمون).</p>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-xl border border-purple-200 shadow-sm">
+                        <h3 class="text-xl font-bold text-purple-600 mb-2">الوسط المعتدل (pH 7)</h3>
+                        <p class="text-gray-700">يوجد توازن تام، فلا تتأثر الصبغة. المحلول بيحافظ على لونه الطبيعي وهو <strong class="text-purple-600">الأرجواني الغامق</strong> (مثل الماء النقي).</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-green-200 shadow-sm">
+                        <h3 class="text-xl font-bold text-green-700 mb-2">الوسط القلوي (pH 8 ➔ 14)</h3>
+                        <p class="text-gray-700">تقل كمية أيونات الهيدروجين، هالشي بيؤدي لتغير حقيقي في التركيب الكيميائي للصبغة، وبينقلب لونها نحو <strong class="text-green-700">الأخضر أو الأزرق</strong> (مثل كربونات الصوديوم أو سائل الجلي).</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- القسم السفلي: الرسمة (مقياس الـ pH) -->
+        <div class="mt-8 bg-gray-50 p-8 rounded-2xl border-2 border-gray-200">
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">ألوان كاشف الكركديه (Hibiscus Indicator Colors) - تدرج الألوان عبر مقياس pH</h2>
+            
+            <div class="flex flex-row-reverse justify-center w-full mb-6">
+                <!-- رسم مقياس الـ pH باستخدام CSS ليكون دقيق جداً كمرجع للرسم اليدوي أو الطباعة -->
+                <div class="ph-cell w-full"><div class="ph-number">14</div><div class="ph-color ph-14"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">13</div><div class="ph-color ph-13"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">12</div><div class="ph-color ph-12"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">11</div><div class="ph-color ph-11"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">10</div><div class="ph-color ph-10"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">9</div><div class="ph-color ph-9"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">8</div><div class="ph-color ph-8"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">7</div><div class="ph-color ph-7"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">6</div><div class="ph-color ph-6"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">5</div><div class="ph-color ph-5"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">4</div><div class="ph-color ph-4"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">3</div><div class="ph-color ph-3"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">2</div><div class="ph-color ph-2"></div></div>
+                <div class="ph-cell w-full"><div class="ph-number">1</div><div class="ph-color ph-1"></div></div>
+            </div>
+
+            <p class="text-center text-xl text-gray-700 font-semibold mt-6">
+                يوضح هذا الرسم نتيجة استخدام الكركديه ككاشف طبيعي للحموضة والقلوية.
+            </p>
+        </div>
+        
+        <!-- لمسة أخيرة -->
+        <div class="mt-8 text-left">
+            <p class="text-sm text-gray-400 font-bold">إعداد: Rayansese</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
